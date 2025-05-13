@@ -17,4 +17,16 @@ class Movie extends Model
         'genre',
         'image',
     ];
+
+    // Relacionamento com usuários que assistiram este filme
+    public function watchedMovies()
+    {
+        return $this->hasMany(WatchedMovie::class);
+    }
+
+    // Relacionamento com avaliações
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

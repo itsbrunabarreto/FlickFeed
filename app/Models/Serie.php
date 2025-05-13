@@ -17,4 +17,16 @@ class Serie extends Model
         'genre',
         'image',
     ];
+
+    // Relacionamento com episódios da série
+    public function episodes()
+    {
+        return $this->hasMany(Episode::class);
+    }
+
+    // Relacionamento com avaliações da série
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

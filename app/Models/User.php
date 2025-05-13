@@ -17,10 +17,10 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'username',  
+        'username',
         'email',
-        'password',  
-        'name',       
+        'password',
+        'name',
     ];
 
     /**
@@ -29,12 +29,12 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
-        'password',   
+        'password',
         'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
      * @return array<string, string>
      */
@@ -44,5 +44,29 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    // Filmes assistidos
+    public function watchedMovies()
+    {
+        return $this->hasMany(WatchedMovie::class);
+    }
+
+    // Episódios assistidos
+    public function watchedEpisodes()
+    {
+        return $this->hasMany(WatchedEpisode::class);
+    }
+
+    // Avaliações
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    // Listas
+    public function lists()
+    {
+        return $this->hasMany(Lists::class);
     }
 }
