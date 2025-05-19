@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\EpisodeController;
 use App\Http\Controllers\Api\WatchedMovieController;
 use App\Http\Controllers\Api\WatchedEpisodeController;
 use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\Api\RatingController;
 
 
 Route::get('/user', function (Request $request) 
