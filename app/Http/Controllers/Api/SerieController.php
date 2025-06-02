@@ -18,7 +18,8 @@ class SerieController extends Controller
         $props = $request->get('props', 'id');
         $search = $request->get('search', '');
 
-        $query = Serie::select('id', 'title', 'description', 'release_year', 'genre', 'image')
+        $query = Serie::with('episodes')  
+            ->select('id', 'title', 'description', 'release_year', 'genre', 'image')
             ->whereNull('deleted_at')
             ->orderBy($props, $dir);
 
@@ -86,7 +87,7 @@ class SerieController extends Controller
     public function show(Request $request, string $id)
     {
         try {
-            $serie = Serie::findOrFail($id);
+            $serie = Serie::with('episodes')->findOrFail($id);  
 
             return response()->json([
                 'message' => 'Série localizada com sucesso',

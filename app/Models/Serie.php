@@ -21,7 +21,7 @@ class Serie extends Model
     // Relacionamento com episódios da série
     public function episodes()
     {
-        return $this->hasMany(Episode::class);
+          return $this->hasMany(Episode::class, 'series_id');
     }
 
     // Relacionamento com avaliações da série

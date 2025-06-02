@@ -1,0 +1,145 @@
+.movie-store-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.movie-store-container h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #222;
+}
+
+.movie-store-form {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.movie-image-preview {
+  flex: 1 1 300px;
+  max-width: 320px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f0f0f0;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.movie-image-preview:hover {
+  border-color: #007bff;
+}
+
+.movie-image-preview img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.image-placeholder {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #999;
+  user-select: none;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.movie-image-preview input[type="file"] {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  opacity: 0.9;
+  cursor: pointer;
+  width: calc(100% - 20px);
+}
+
+.movie-form-fields {
+  flex: 2 1 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.movie-form-fields label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.movie-form-fields input[type="text"],
+.movie-form-fields input[type="number"],
+.movie-form-fields textarea {
+  margin-top: 0.3rem;
+  padding: 0.5rem 0.8rem;
+  font-size: 1rem;
+  border: 1.5px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.movie-form-fields input[type="text"]:focus,
+.movie-form-fields input[type="number"]:focus,
+.movie-form-fields textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px #007bffaa;
+}
+
+.movie-form-fields textarea {
+  resize: vertical;
+}
+
+.required {
+  color: #e55353;
+}
+
+.error-message {
+  color: #e55353;
+  font-weight: 600;
+  margin-top: -0.5rem;
+}
+
+.success-message {
+  color: #3cb371;
+  font-weight: 600;
+  margin-top: -0.5rem;
+}
+
+button[type="submit"] {
+  margin-top: 1rem;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+button[type="submit"]:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}

@@ -21,7 +21,7 @@ class Episode extends Model
     // Relacionamento com a série
     public function series()
     {
-        return $this->belongsTo(Serie::class); 
+        return $this->belongsTo(Serie::class, 'series_id'); 
     }
 
     // Relacionamento com os usuários que assistiram este episódio

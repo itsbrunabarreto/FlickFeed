@@ -4,17 +4,39 @@ import { Link } from 'react-router-dom';
 
 export default function UserFormList() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    axiosClient.get('/user/index')
-      .then(({ data }) => setUsers(data.data))
-      .catch((error) => console.error('Erro ao buscar usuários:', error));
+    async function fetchUsers() {
+      try {
+        setLoading(true);
+        const { data } = await axiosClient.get('/user/index');
+        setUsers(data.data || []);
+        setError(null);
+      } catch (err) {
+        console.error('Erro ao buscar usuários:', err);
+        setError('Não foi possível carregar os usuários. Tente novamente.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchUsers();
   }, []);
+
+  if (loading) {
+    return <div className="loading">Carregando usuários...</div>;
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>;
+  }
 
   return (
     <div className="display">
       <div className="card">
-        <div style={{
+        <header style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -22,7 +44,7 @@ export default function UserFormList() {
         }}>
           <h1>Usuários Cadastrados</h1>
           <Link to="/user/store" className="btn-add">Novo Usuário</Link>
-        </div>
+        </header>
 
         <table>
           <thead>
@@ -36,7 +58,7 @@ export default function UserFormList() {
           </thead>
           <tbody>
             {users.length > 0 ? (
-              users.map((user) => (
+              users.map(user => (
                 <tr key={user.id}>
                   <td>{user.id}</td>
                   <td>{user.username}</td>

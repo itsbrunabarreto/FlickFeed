@@ -74,24 +74,26 @@ Route::prefix('lists')->group(function() {
 });
 
 
-Route::prefix('ratings')->group(function() {
-    
-    // Criar uma avaliação para um filme
+
+Route::prefix('ratings')->group(function () {
+    // Criar uma avaliação
     Route::post('/store', [RatingController::class, 'store']);
 
-    // Atualizar a avaliação de um filme ou série
+    // Atualizar avaliação existente
     Route::put('/update/{id}', [RatingController::class, 'update']);
 
-    // Mostrar a avaliação de um filme ou série
+    // Mostrar avaliação específica
     Route::get('/show/{id}', [RatingController::class, 'show']);
 
-    // Listar todas as avaliações de um usuário
+    // Listar todas as avaliações do usuário autenticado
+    Route::get('/index', [RatingController::class, 'index']);
+
+    // Listar avaliações de um usuário específico (pode ser usado para admin ou público)
     Route::get('/user/{userId}', [RatingController::class, 'userRatings']);
 
-    // Excluir a avaliação de um filme ou série
+    // Excluir avaliação
     Route::delete('/destroy/{id}', [RatingController::class, 'destroy']);
 });
-
 
 Route::prefix('watched-movies')->group(function () {
 

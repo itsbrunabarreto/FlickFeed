@@ -10,9 +10,9 @@ class ListItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'list_id',    // ID da lista
-        'movie_id',   // ID do filme (se for o caso)
-        'serie_id',   // ID da série (se for o caso)
+        'lists_id',    // ID da lista
+        'movies_id',   // ID do filme (se for o caso)
+        'series_id',   // ID da série (se for o caso)
     ];
 
     /**
