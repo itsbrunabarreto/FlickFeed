@@ -1,0 +1,66 @@
+.serie-delete-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ccc;
+  text-align: center;
+}
+
+.serie-delete-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.serie-delete-card img {
+  max-width: 300px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.serie-delete-info {
+  text-align: left;
+}
+
+.serie-delete-warning {
+  font-weight: bold;
+  color: #c0392b;
+  margin: 1rem 0;
+}
+
+.serie-delete-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.serie-delete-actions button {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.serie-delete-actions button:first-child {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.serie-delete-actions button:last-child {
+  background-color: #bdc3c7;
+  color: black;
+}
+
+.error-message {
+  color: red;
+  margin-top: 1rem;
+}
+
+.success-message {
+  color: green;
+  margin-top: 1rem;
+}

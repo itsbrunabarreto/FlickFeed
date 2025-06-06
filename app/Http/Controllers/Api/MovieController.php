@@ -108,54 +108,58 @@ class MovieController extends Controller
     }
 
     public function update(Request $request, string $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:1000',
-            'release_year' => 'required|integer|between:1900,2100',
-            'genre' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Imagem opcional
-        ]);
+{
+    // Log para debug (verifique o arquivo storage/logs/laravel.log)
+    \Log::info('Update Movie Request', $request->all());
 
-        if ($validator->fails()) {
-            return response()->json([
-                'message' => 'Erro nas informações do filme',
-                'data' => $validator->errors(),
-                'status' => 404,
-            ], 404);
-        }
+    $validator = Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string|max:1000',
+        'release_year' => 'required|integer|between:1900,2100',
+        'genre' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // aceita imagens jpeg, png, jpg, gif, max 2MB
+    ]);
 
-        $movie = Movie::find($id);
-
-        if (!$movie) {
-            return response()->json([
-                'message' => 'Filme não localizado',
-                'data' => $id,
-                'status' => 404,
-            ], 404);
-        }
-
-        $movie->title = $request->title ?? $movie->title;
-        $movie->description = $request->description ?? $movie->description;
-        $movie->release_year = $request->release_year ?? $movie->release_year;
-        $movie->genre = $request->genre ?? $movie->genre;
-
-        if ($request->hasFile('image')) {
-            // Deletar imagem antiga
-            if ($movie->image) {
-                Storage::disk('public')->delete($movie->image);
-            }
-            $movie->image = $request->file('image')->store('movies', 'public');
-        }
-
-        $movie->save();
-
+    if ($validator->fails()) {
         return response()->json([
-            'message' => 'Filme alterado com sucesso',
-            'data' => $movie,
-            'status' => 200,
-        ], 200);
+            'message' => 'Erro nas informações do filme',
+            'data' => $validator->errors(),
+            'status' => 422,
+        ], 422);
     }
+
+    $movie = Movie::find($id);
+
+    if (!$movie) {
+        return response()->json([
+            'message' => 'Filme não localizado',
+            'data' => $id,
+            'status' => 404,
+        ], 404);
+    }
+
+    $movie->title = $request->title ?? $movie->title;
+    $movie->description = $request->description ?? $movie->description;
+    $movie->release_year = $request->release_year ?? $movie->release_year;
+    $movie->genre = $request->genre ?? $movie->genre;
+
+    if ($request->hasFile('image')) {
+        // Deletar imagem antiga, se existir
+        if ($movie->image) {
+            Storage::disk('public')->delete($movie->image);
+        }
+        $movie->image = $request->file('image')->store('movies', 'public');
+    }
+
+    $movie->save();
+
+    return response()->json([
+        'message' => 'Filme alterado com sucesso',
+        'data' => $movie,
+        'status' => 200,
+    ], 200);
+}
+
 
     public function destroy(Request $request, string $id)
     {

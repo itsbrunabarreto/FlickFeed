@@ -31,7 +31,7 @@ export default function MovieFormShow() {
 
       <div className="movie-details">
         <img
-          src={movie.image ? `${import.meta.env.VITE_API_BASE_URL}/storage/${movie.image}` : '/no-image.png'}
+          src={`http://localhost:8000/storage/${movie.image}`}
           alt={movie.title}
           className="movie-image"
         />

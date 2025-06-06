@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class EpisodeController extends Controller
 {
-    public function index(Request $request)
+    // Retorna os episódios de uma série específica
+    public function index($serieId)
     {
-        $episodes = Episode::with('series')->paginate(10);
+        $episodes = Episode::where('series_id', $serieId)->get();
 
         return response()->json([
-            'message' => 'Lista de episódios',
+            'message' => 'Lista de episódios da série',
             'data' => $episodes,
             'status' => 200
         ]);

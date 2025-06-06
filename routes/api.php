@@ -32,7 +32,7 @@ Route::prefix('movie')->group(function() {
     Route::get('/index', [MovieController::class, 'index']);
     Route::get('/show/{id}', [MovieController::class, 'show']);
     Route::post('/store', [MovieController::class, 'store']);
-    Route::put('/update/{id}', [MovieController::class, 'update']);
+    Route::match(['post', 'put'], '/update/{id}', [MovieController::class, 'update']);
     Route::delete('/destroy/{id}', [MovieController::class, 'destroy']);
 });
 
@@ -46,13 +46,14 @@ Route::prefix('serie')->group(function() {
 });
 
 Route::prefix('/episode')->group(function () {
-
-    Route::get('/index', [EpisodeController::class, 'index']);
+    Route::get('/index', [EpisodeController::class, 'index']); 
+    Route::get('/index/{serieId}', [EpisodeController::class, 'index']);
     Route::get('/show/{id}', [EpisodeController::class, 'show']);
     Route::post('/store', [EpisodeController::class, 'store']);
     Route::put('/update/{id}', [EpisodeController::class, 'update']);
     Route::delete('/destroy/{id}', [EpisodeController::class, 'destroy']);
 });
+
 
 
 Route::prefix('lists')->group(function() {
