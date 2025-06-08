@@ -1,0 +1,58 @@
+.episode-update-container {
+  background-color: #1c1c1e;
+  color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 3rem auto;
+  box-shadow: 0 0 15px rgba(128, 0, 255, 0.4);
+}
+
+.episode-update-container h2 {
+  text-align: center;
+  color: #b388ff;
+  margin-bottom: 1.5rem;
+}
+
+.episode-update-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.episode-update-container label {
+  font-weight: 500;
+  color: #aaa;
+}
+
+.episode-update-container input,
+.episode-update-container textarea,
+.episode-update-container select {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #2c2c2e;
+  color: #fff;
+  outline: none;
+}
+
+.episode-update-container input:focus,
+.episode-update-container textarea:focus,
+.episode-update-container select:focus {
+  box-shadow: 0 0 0 2px #8e44ad;
+}
+
+.episode-update-container button {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #6a00ff, #9b00e8);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.episode-update-container button:hover {
+  background: linear-gradient(135deg, #8e44ad, #6a00ff);
+}

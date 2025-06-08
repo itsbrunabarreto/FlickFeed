@@ -1,0 +1,61 @@
+.list-form-delete {
+  max-width: 400px;
+  margin: 1rem auto;
+  background: #1a1a2e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.7);
+  color: #ddd;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.list-form-delete p {
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.list-form-delete .error {
+  margin-bottom: 1rem;
+  color: #f76c6c;
+  font-size: 0.9rem;
+}
+
+.list-form-delete .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.list-form-delete button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #eee;
+}
+
+.list-form-delete .delete-btn {
+  background: #b33939;
+}
+
+.list-form-delete .delete-btn:hover:not(:disabled) {
+  background: #e84118;
+}
+
+.list-form-delete .cancel-btn {
+  background: #444366;
+}
+
+.list-form-delete .cancel-btn:hover:not(:disabled) {
+  background: #5a507a;
+}
+
+.list-form-delete button:disabled {
+  background: #4a3a6a;
+  cursor: not-allowed;
+}

@@ -20,6 +20,12 @@ import SerieFormDelete from '../views/serie/SerieFormDelete';
 
 import EpisodeFormShow from '../views/episode/EpisodeFormShow';
 import EpisodeSeasonList from '../views/episode/EpisodeSeasonList';
+import EpisodeFormStore from '../views/episode/EpisodeFormStore';
+import EpisodeFormUpdate from '../views/episode/EpisodeFormUpdate';
+
+import ListFormStore from '../views/lists/ListFormStore';
+import ListFormUpdate from '../views/lists/ListFormUpdate';
+import ListFormDelete from '../views/lists/ListFormDelete';
 
 import NotFound from '../views/NotFound';
 import Login from '../views/login/Login';
@@ -50,6 +56,12 @@ const Rotas = () => {
 
         <Route path='episode/show/:id' element={<EpisodeFormShow/>} />
         <Route path="serie/:serieId/season/:season" element={<EpisodeSeasonList />} />
+        <Route path='episode/store' element={<EpisodeFormStore/>} />
+        <Route path='episode/update/:id' element={<EpisodeFormUpdate/>} />
+
+        <Route path='list/store' element={<ListFormStore/>} />
+        <Route path='list/update' element={<ListFormUpdate/>} />
+        <Route path='list/destroy/:id' element={<ListFormDelete/>} />
 
         <Route path='user/index' element={<UserFormList/>} />
         <Route path='user/store' element={<UserFormStore/>} />

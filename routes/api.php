@@ -76,36 +76,3 @@ Route::prefix('lists')->group(function() {
 
 
 
-Route::prefix('ratings')->group(function () {
-    // Criar uma avaliação
-    Route::post('/store', [RatingController::class, 'store']);
-
-    // Atualizar avaliação existente
-    Route::put('/update/{id}', [RatingController::class, 'update']);
-
-    // Mostrar avaliação específica
-    Route::get('/show/{id}', [RatingController::class, 'show']);
-
-    // Listar todas as avaliações do usuário autenticado
-    Route::get('/index', [RatingController::class, 'index']);
-
-    // Listar avaliações de um usuário específico (pode ser usado para admin ou público)
-    Route::get('/user/{userId}', [RatingController::class, 'userRatings']);
-
-    // Excluir avaliação
-    Route::delete('/destroy/{id}', [RatingController::class, 'destroy']);
-});
-
-Route::prefix('watched-movies')->group(function () {
-
-    Route::get('/index', [WatchedMovieController::class, 'index']);
-    Route::post('/store', [WatchedMovieController::class, 'store']);
-    Route::delete('/{id}/destroy', [WatchedMovieController::class, 'destroy']);
-});
-
-Route::prefix('watched-episodes')->group(function () {
-
-    Route::get('/index', [WatchedEpisodeController::class, 'index']);
-    Route::post('/store', [WatchedEpisodeController::class, 'store']);
-    Route::delete('/{id}/destroy', [WatchedEpisodeController::class, 'destroy']);
-});
