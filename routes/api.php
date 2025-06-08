@@ -47,7 +47,7 @@ Route::prefix('serie')->group(function() {
 
 Route::prefix('/episode')->group(function () {
     Route::get('/index', [EpisodeController::class, 'index']); 
-    Route::get('/index/{serieId}', [EpisodeController::class, 'index']);
+    Route::get('/index/{serieId}/season/{season}', [EpisodeController::class, 'getBySeason']);
     Route::get('/show/{id}', [EpisodeController::class, 'show']);
     Route::post('/store', [EpisodeController::class, 'store']);
     Route::put('/update/{id}', [EpisodeController::class, 'update']);

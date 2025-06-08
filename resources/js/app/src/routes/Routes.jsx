@@ -19,10 +19,23 @@ import SerieFormUpdate from '../views/serie/SerieFormUpdate';
 import SerieFormDelete from '../views/serie/SerieFormDelete';
 
 import EpisodeFormShow from '../views/episode/EpisodeFormShow';
+import EpisodeSeasonList from '../views/episode/EpisodeSeasonList';
+
+import NotFound from '../views/NotFound';
+import Login from '../views/login/Login';
+import Signup from '../views/login/Signup';
+import UpdatePassword from '../views/login/UpdatePassword';
+import ForgotPassword from '../views/login/ForgotPassword';
 
 const Rotas = () => {
   return (
     <Routes>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Signup/>}/>
+        <Route path='/forgotpassword' element={<ForgotPassword/>}/>
+        <Route path='/updatepassword' element={<UpdatePassword/>}/>
+        
         <Route path='movie/index' element={<MovieFormList/>} />
         <Route path='movie/store' element={<MovieFormStore/>} />
         <Route path='movie/show/:id' element={<MovieFormShow/>} />
@@ -36,12 +49,15 @@ const Rotas = () => {
         <Route path='serie/destroy/:id' element={<SerieFormDelete/>} />
 
         <Route path='episode/show/:id' element={<EpisodeFormShow/>} />
+        <Route path="serie/:serieId/season/:season" element={<EpisodeSeasonList />} />
 
         <Route path='user/index' element={<UserFormList/>} />
         <Route path='user/store' element={<UserFormStore/>} />
         <Route path='user/show/:id' element={<UserFormShow />} />
         <Route path='user/destroy/:id' element={<UserFormDestroy/>} />
         <Route path='user/update/:id' element={<UserFormUpdate/>} />
+
+        <Route path = "*" element={<NotFound/>}/>
     </Routes>
 )
 }

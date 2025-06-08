@@ -21,6 +21,20 @@ class EpisodeController extends Controller
         ]);
     }
 
+    public function getBySeason($serieId, $season)
+    {
+        $episodes = Episode::where('series_id', $serieId)
+                        ->where('season', $season)
+                        ->orderBy('episode_number')
+                        ->get();
+
+        return response()->json([
+            'message' => "Episódios da série {$serieId}, temporada {$season}",
+            'data' => $episodes,
+            'status' => 200
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
