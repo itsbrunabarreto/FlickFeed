@@ -1,24 +1,23 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './Signup.css';
 
-export default function Signup()
-{
+export default function Signup() {
+  return (
+    <div className="signup-container">
+      <form className="signup-form">
+        <h1 className="signup-title">Registre sua conta</h1>
 
-    return(
-    
-        <div className="login-signup-form animated fadeInDown">
-            <div className= "form">
-                <form>
-                <h1 className="title">Registre sua conta</h1>
+        <input type="text" placeholder="Nome" className="signup-input" />
+        <input type="text" placeholder="E-mail" className="signup-input" />
+        <input type="password" placeholder="Senha" className="signup-input" />
+        <input type="password" placeholder="Confirme Senha" className="signup-input" />
 
-                <input type="text" placeholder="Nome"/>
-                <input type="text" placeholder="E-mail"/>
-                <input type="password" placeholder="Senha"/>
-                <input type="password" placeholder="Confirme Senha"/>
+        <button className="signup-button">Salvar</button>
 
-                <button className='btn btn-block'>Salvar</button>
-                <p className='message'>Está registrado?</p><Link to="/login">Login</Link>
-                </form>
-            </div>
-        </div>
-    )
+        <p className="signup-message">
+          Já está registrado? <Link to="/login" className="signup-link">Login</Link>
+        </p>
+      </form>
+    </div>
+  );
 }

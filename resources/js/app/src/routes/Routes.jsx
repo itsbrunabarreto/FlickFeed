@@ -36,6 +36,7 @@ import ForgotPassword from '../views/login/ForgotPassword';
 const Rotas = () => {
   return (
     <Routes>
+      
         <Route path='/' element={<Login/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Signup/>}/>

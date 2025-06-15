@@ -1,20 +1,29 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './UpdatePassword.css';
 
-export default function UpdatePassword()
-{
-    
-    return(
-        <div className="login-signup-form animated fadeInDown">
-            <div className= "form">
-                <form>
-                <h1 className="title">Alterar Senha</h1>
-                <input type="password" placeholder="Senha"/>
-                <input type="password" placeholder="Confirme Senha"/>
+export default function UpdatePassword() {
+  return (
+    <div className="update-password-container">
+      <form className="update-password-form">
+        <h1 className="update-title">Alterar Senha</h1>
 
-                <button className='btn btn-block'>Salvar</button>
-                <p className='message'>Acesso ao sistema</p><Link to="/login">Login</Link>
-                </form>
-            </div>
-        </div>
-    )
+        <input
+          type="password"
+          placeholder="Nova Senha"
+          className="update-input"
+        />
+        <input
+          type="password"
+          placeholder="Confirmar Senha"
+          className="update-input"
+        />
+
+        <button className="update-button">Salvar</button>
+
+        <p className="update-message">
+          Acesso ao sistema? <Link to="/login" className="update-link">Login</Link>
+        </p>
+      </form>
+    </div>
+  );
 }

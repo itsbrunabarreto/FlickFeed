@@ -1,0 +1,159 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0d0c1d; /* azul escuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-form {
+  background-color: #1a1a2e;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-title {
+  color: #c084f5;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.login-alert {
+  color: #ff4b5c;
+  background-color: #2a2a3d;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.login-input {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #2f2f46;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.login-input::placeholder {
+  color: #999;
+}
+
+.login-button {
+  background-color: #6a0dad;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #8a2be2;
+}
+
+.login-message {
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.login-link {
+  color: #c084f5;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.login-form-container {
+  background: linear-gradient(to bottom, #1a1a2e, #16213e);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-box {
+  background-color: #0f0f1a;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-title {
+  text-align: center;
+  color: #c77dff;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #1f1f2e;
+  color: white;
+}
+
+input:focus {
+  outline: 2px solid #6247aa;
+}
+
+.input-error {
+  border: 1px solid #ff4d4f;
+}
+
+.error-text {
+  color: #ff4d4f;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #6247aa;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #7d5bbe;
+}
+
+.form-message {
+  text-align: center;
+  margin-top: 1rem;
+  color: #ccc;
+}
+
+.form-message a {
+  color: #9d4edd;
+  text-decoration: none;
+}
+
+.form-message a:hover {
+  text-decoration: underline;
+}

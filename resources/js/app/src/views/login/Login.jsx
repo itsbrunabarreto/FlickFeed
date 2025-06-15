@@ -1,68 +1,96 @@
-import { useState, createRef } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useLogin } from '../../context/ContextProvider';
+import useValidator from '../../hook/useValidator';
 import axiosClient from '../../axiosClient';
-import { useLogin} from '../../context/ContextProvider';
+import './Login.css';
 
-export default function Login()
-{
-    const emailRef = createRef();
-    const passwordRef = createRef();
-    const navigate = useNavigate();
-    const { _setToken, _setUser} = useLogin();
+export default function Login() {
+  const navigate = useNavigate();
+  const { _setToken, _setUser } = useLogin();
 
-    const[message,setMessage]= useState (null)
+  const initialModel = { email: '', password: '' };
+  const errorModel = { email: false, password: false, emailMensagem: [], passwordMensagem: [] };
 
-    const onSubmit=(e) =>{
-        e.preventDefault();
-
-        
-        const login = {
-            email: emailRef.current.value,
-            password:passwordRef.current.value
-        }
-        
-        axiosClient.post('/login', login)
-                    .then(({ data }) => {
-                        console.log(data);
-
-                        _setToken(data.token);
-                        _setUser(data.user);
-
-                        navigate('/dashboard');
-                    })
-                    .catch((erro) => {
-                        console.log(erro);
-                        setMessage('Erro ao fazer login'); 
-                    });
-                    setMessage('Login Realizado com Sucesso');
+  const validationRules = {
+    email: (value) => {
+      const erros = [];
+      if (!value) erros.push('E-mail é obrigatório.');
+      else if (!/\S+@\S+\.\S+/.test(value)) erros.push('Formato de e-mail inválido.');
+      return erros;
+    },
+    password: (value) => {
+      const erros = [];
+      if (!value) erros.push('Senha é obrigatória.');
+      else if (value.length < 6) erros.push('A senha deve ter pelo menos 6 caracteres.');
+      return erros;
     }
+  };
 
-    return(
+  const {
+    model,
+    error,
+    handleChangeField,
+    handleBlurField,
+    formValid,
+    setError
+  } = useValidator(initialModel, errorModel, validationRules);
 
-        <div className="login-signup-form animated fadeInDown">
-            <div className= "form">
-                <form onSubmit={onSubmit}>
-                <h1 className="title margem">Acesso ao Sistema</h1>
-                {
-                    message &&
-                    <div className='alert'>
-                        <p>{message}</p>
-                    </div>
-                }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!formValid()) return;
 
-                <input type="text" 
-                       placeholder="E-mail" 
-                       className='margem'
-                       ref={emailRef}/>
-                <input type="password" 
-                       placeholder="Senha"
-                       className='margem'
-                       ref={passwordRef}/>
-                <button type="submit"
-                    className='btn btn-block'>Login</button>
-                <p className='message'>Não está Registrado?</p><Link to="/register">Criar nova conta</Link>
-                </form>
-            </div>
-        </div>
-    )
+    axiosClient.post('/login', model)
+      .then(({ data }) => {
+        _setToken(data.token);
+        _setUser(data.user);
+        navigate('/dashboard');
+      })
+      .catch(() => {
+        setError(prev => ({
+          ...prev,
+          emailMensagem: ['Credenciais inválidas'],
+          email: true
+        }));
+      });
+  };
+
+  return (
+    <div className="login-form-container">
+      <div className="form-box">
+        <form onSubmit={onSubmit}>
+          <h1 className="form-title">Acesso ao Sistema</h1>
+
+          <input
+            type="text"
+            name="email"
+            placeholder="E-mail"
+            value={model.email}
+            onChange={handleChangeField}
+            onBlur={handleBlurField}
+            className={error.email ? 'input-error' : ''}
+          />
+          {error.emailMensagem.map((msg, i) => (
+            <p key={i} className="error-text">{msg}</p>
+          ))}
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Senha"
+            value={model.password}
+            onChange={handleChangeField}
+            onBlur={handleBlurField}
+            className={error.password ? 'input-error' : ''}
+          />
+          {error.passwordMensagem.map((msg, i) => (
+            <p key={i} className="error-text">{msg}</p>
+          ))}
+
+          <button type="submit" className="btn-submit">Login</button>
+
+          <p className="form-message">Não está Registrado? <Link to="/register">Criar nova conta</Link></p>
+        </form>
+      </div>
+    </div>
+  );
 }

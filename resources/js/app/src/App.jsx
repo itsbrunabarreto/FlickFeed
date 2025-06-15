@@ -1,14 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+
+import ContextProvider from './context/ContextProvider'
 import Rotas from './routes/Routes'
 
 function App() {
 
   return (
     <>
-      <Rotas/>
+     <ContextProvider>
+        <Rotas/>
+     </ContextProvider>
     </>
-      
   )
 }
 
