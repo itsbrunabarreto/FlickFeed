@@ -43,6 +43,7 @@ const Rotas = () => {
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>
         <Route path='/updatepassword' element={<UpdatePassword/>}/>
         
+        
         <Route path='movie/index' element={<MovieFormList/>} />
         <Route path='movie/store' element={<MovieFormStore/>} />
         <Route path='movie/show/:id' element={<MovieFormShow/>} />
