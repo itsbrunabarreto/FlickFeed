@@ -69,4 +69,35 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lists::class);
     }
+
+    public static function sendVerificationEmail($user)
+    {
+        $activateCode = bcrypt(Str::random(15));
+        $user->remember_token = $activateCode;
+        $user->save();
+        $viewData['Nome'] = $user->name;
+        $emailCode = $user->remember_token;
+        $viewData['link'] = asset('/api/verify_account?token'.$emailCode);
+        Mail::send('layouts.email_verification',env('APP_NAME'),$viewData, function($m) use($user){
+            $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $m->to($user->email, $user->name)->subject('E-mail de Confirmação de Registro no Sistema');
+        });
+    }
+
+    public static function sendEmailUserActivated($user){
+        $viewData['Nome'] = $user->name;
+        $viewData['link'] = asset('http://localhost:3000/login');
+        Mail::send('layouts.email_verification',$viewData, function($m) use($user){
+            $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $m->to($user->email, $user->name)->subject('Usuário Registrado e Liberado para Acesso');
+        });
+    }
+
+    public static function sendEmailUserActivatedFailed($user){
+        $viewData['Nome'] = $user->name;
+        Mail::send('layouts.email_verification',$viewData, function($m) use($user){
+            $m->from(env('MAIL_FROM_ADDRESS'), env('APP_NAME'));
+            $m->to($user->email, $user->name)->subject('Usuário já está registrado no sistema ou link está expirado');
+        });
+    }
 }

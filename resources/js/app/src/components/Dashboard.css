@@ -1,0 +1,21 @@
+.dashboard-container {
+  background-color: #1F1F1F;
+  color: #EAEAEA;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  max-width: 800px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  color: #8A2BE2;
+  margin-bottom: 20px;
+}
+
+.dashboard-subtitle {
+  font-size: 1.2rem;
+  color: #CCCCCC;
+}
